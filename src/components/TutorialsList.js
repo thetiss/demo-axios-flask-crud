@@ -12,18 +12,19 @@ const TutorialsList = () => {
     retrieveTutorials();
   }, []);
 
-  const onChangeSearchTitle = e => {
+  const onChangeSearchTitle = (e) => {
     const searchTitle = e.target.value;
     setSearchTitle(searchTitle);
   };
 
   const retrieveTutorials = () => {
     TutorialDataService.getAll()
-      .then(response => {
-        setTutorials(response.data);
+      .then((response) => {
+        setTutorials(response.data.data);
+        console.log(response);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -41,22 +42,23 @@ const TutorialsList = () => {
 
   const removeAllTutorials = () => {
     TutorialDataService.removeAll()
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         refreshList();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
   const findByTitle = () => {
     TutorialDataService.findByTitle(searchTitle)
-      .then(response => {
+      .then((response) => {
         setTutorials(response.data);
+        console.log(response);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
